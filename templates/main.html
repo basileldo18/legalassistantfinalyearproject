@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Legal Assistant</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f7fb;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5em;
+            color: #333;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #007bff;
+        }
+
+        .call-back-btn {
+            border: 2px solid #007bff;
+            color: #007bff;
+            background: transparent;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            font-size: 1em;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .call-back-btn:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        /* Main Section */
+        .main-content {
+            text-align: center;
+            padding: 80px 20px;
+            max-width: 900px;
+        }
+
+        .main-content h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3em;
+            color: #333;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .main-content p {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .discuss-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .discuss-btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* Illustration Section */
+        .illustration {
+            position: relative;
+            display: inline-block;
+            margin-top: 50px;
+        }
+
+        .illustration img {
+            width: 80%;
+            max-width: 400px;
+        }
+
+        /* Features Section */
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 60px;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        .feature-box {
+            width: 200px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-box:hover {
+            transform: translateY(-10px);
+            border-color: #007bff;
+        }
+
+        .feature-box h3 {
+            color: #007bff;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .feature-box p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        /* Chatbot & Document Generation Section */
+        .cta-section {
+            margin-top: 60px;
+            text-align: center;
+            padding: 50px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        .cta-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .cta-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .cta-btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <h1>AI Legal Assistant</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+            </ul>
+        </nav>
+        <button class="call-back-btn">Call Back</button>
+    </header>
+
+    <!-- Main Content Section -->
+
+
+
+    <!-- Features Section -->
+
+    <!-- Chatbot & Document Generation Section -->
+    <section class="cta-section">
+        <h2>AI-powered Chatbot & Document Generation</h2>
+        <p>Get instant access to our AI-powered chatbot for legal inquiries and generate customized legal documents effortlessly.</p>
+        <div class="cta-buttons">
+            <button class="cta-btn" id="startChatBtn">Start Chat</button>
+            <button class="cta-btn" id="generateDocumentBtn">Generate Document</button>
+        </div>
+    </section>
+
+</body>
+</html>
+
+<script>
+    document.getElementById('startChatBtn').addEventListener('click', function() {
+        // Set the route you want to redirect to
+        window.location.href = '/bot'; // Change '/chat' to your desired route
+    });
+    document.getElementById('generateDocumentBtn').addEventListener('click', function() {
+        // Set the route you want to redirect to
+        window.location.href = '/case'; // Change '/chat' to your desired route
+    });
+</script>

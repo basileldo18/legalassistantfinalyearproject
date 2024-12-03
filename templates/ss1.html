@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copyright Agreement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .label {
+            font-weight: bold;
+        }
+        .info {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Copyright Agreement</h2>
+
+        <div class="section">
+            <h3>Grantor Information</h3>
+            <p><span class="label">Name:</span> {{ data['Copyright_Agreement'].get('Grantor_Information', {}).get('Name', 'Not Available') }}</p>
+            <p><span class="label">Parents Name:</span> {{ data['Copyright_Agreement'].get('Grantor_Information', {}).get('Parents_Name', 'Not Available') }}</p>
+            <p><span class="label">Age:</span> {{ data['Copyright_Agreement'].get('Grantor_Information', {}).get('Age', 'Not Available') }}</p>
+            <p><span class="label">Address:</span> {{ data['Copyright_Agreement'].get('Grantor_Information', {}).get('Address', 'Not Available') }}</p>
+        </div>
+
+        <div class="section">
+            <h3>Grantee Information</h3>
+            <p><span class="label">Name:</span> {{ data['Copyright_Agreement'].get('Grantee_Information', {}).get('Name', 'Not Available') }}</p>
+            <p><span class="label">Parents Name:</span> {{ data['Copyright_Agreement'].get('Grantee_Information', {}).get('Parents_Name', 'Not Available') }}</p>
+            <p><span class="label">Age:</span> {{ data['Copyright_Agreement'].get('Grantee_Information', {}).get('Age', 'Not Available') }}</p>
+            <p><span class="label">Address:</span> {{ data['Copyright_Agreement'].get('Grantee_Information', {}).get('Address', 'Not Available') }}</p>
+        </div>
+
+        <div class="section">
+            <h3>Work Details</h3>
+            <p><span class="label">Work Title:</span> {{ data['Copyright_Agreement'].get('Work_Details', {}).get('Work_Title', 'Not Available') }}</p>
+            <p><span class="label">Work Type:</span> {{ data['Copyright_Agreement'].get('Work_Details', {}).get('Work_Type', 'Not Available') }}</p>
+            <p><span class="label">Work Description:</span> {{ data['Copyright_Agreement'].get('Work_Details', {}).get('Work_Description', 'Not Available') }}</p>
+        </div>
+
+        <div class="section">
+            <h3>License Terms</h3>
+            <p><span class="label">License Type:</span> {{ data['Copyright_Agreement'].get('License_Terms', {}).get('License_Type', 'Not Available') }}</p>
+            <p><span class="label">License Purpose:</span> {{ data['Copyright_Agreement'].get('License_Terms', {}).get('License_Purpose', 'Not Available') }}</p>
+            <p><span class="label">Territory:</span> {{ data['Copyright_Agreement'].get('License_Terms', {}).get('Territory', 'Not Available') }}</p>
+            <p><span class="label">Duration:</span> {{ data['Copyright_Agreement'].get('License_Terms', {}).get('Duration', 'Not Available') }}</p>
+        </div>
+
+        <div class="section">
+            <h3>Financial Terms</h3>
+            <p><span class="label">Royalty Agreement:</span> Rs. {{ data['Copyright_Agreement'].get('Financial_Terms', {}).get('Royalty_Agreement', {}).get('Amount', 'Not Available') }} ({{ data['Copyright_Agreement'].get('Financial_Terms', {}).get('Royalty_Agreement', {}).get('In_Words', 'Not Available') }})</p>
+            <p><span class="label">Late Charges:</span> Rs. {{ data['Copyright_Agreement'].get('Financial_Terms', {}).get('Late_Charges', 'Not Available') }}</p>
+        </div>
+
+        <div class="section">
+            <h3>Termination</h3>
+            <p><span class="label">Notice Period:</span> {{ data['Copyright_Agreement'].get('Termination', {}).get('Notice_Period', 'Not Available') }}</p>
+            <p><span class="label">Conditions:</span> {{ data['Copyright_Agreement'].get('Termination', {}).get('Conditions', 'Not Available') }}</p>
+        </div>
+    </div>
+</body>
+</html>

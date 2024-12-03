@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Assistant Chatbot</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+        /* Basic styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F4F4F8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar styling */
+        .sidebar {
+            width: 260px;
+            background-color: #1A1A1A;
+            color: #FFF;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sidebar h2 {
+            color: #FF6347;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .sidebar button {
+            background-color: transparent;
+            color: #FFF;
+            border: none;
+            margin: 10px 0;
+            cursor: pointer;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+
+        .sidebar button:hover {
+            color: #FF6347;
+        }
+
+        /* Content area */
+        .content {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .topbar {
+            background-color: #FFF;
+            padding: 15px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 1.2em;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Chat container */
+        .chat-container {
+            background-color: #FFF;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 800px;
+            height: 60%;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+            margin: 10px 0;
+            padding: 12px;
+            font-size: 1em;
+            line-height: 1.4;
+            border-radius: 5px;
+            max-width: 80%;
+        }
+
+        .user {
+            background-color: #FF6347;
+            color: #fff;
+            margin-left: auto;
+            align-self: flex-end;
+        }
+
+        .bot {
+            background-color: #F1F1F1;
+            color: #333;
+        }
+
+        /* Input area styling */
+        #input-area {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 800px;
+            margin-top: 15px;
+        }
+
+        #user-input {
+            width: 85%;
+            padding: 12px;
+            background-color: #FFF;
+            color: #333;
+            border: 1px solid #DDD;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        #send-button {
+            background-color: #FF6347;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        #send-button:hover {
+            background-color: #FF4500;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Legal Assistant</h2>
+        <button>Dashboard</button>
+        <button>Templates</button>
+        <button>History</button>
+        <button>Settings</button>
+    </div>
+
+    <div class="content">
+        <div class="topbar">
+            <h1>AI Legal Chat Bot</h1>
+            <div>
+                <button>Logout</button>
+            </div>
+        </div>
+        <div class="chat-container" id="chat-container">
+            <!-- Chat messages will appear here -->
+        </div>
+        <div id="input-area">
+            <input type="text" id="user-input" placeholder="Ask a legal question..." autocomplete="off" />
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('send-button').addEventListener('click', sendMessage);
+
+        function sendMessage() {
+            var userInput = document.getElementById('user-input').value.trim();
+            if (userInput === '') return;
+
+            // Add user message to chat container
+            var chatContainer = document.getElementById('chat-container');
+            var userMessageElement = document.createElement('div');
+            userMessageElement.classList.add('message', 'user');
+            userMessageElement.textContent = userInput;
+            chatContainer.appendChild(userMessageElement);
+
+            // Clear input field
+            document.getElementById('user-input').value = '';
+
+            const greetings = ['hi', 'hey', 'hello', 'greetings', 'good morning', 'good evening', 'howdy'];
+            let reply = '';
+
+            if (greetings.some(greeting => userInput.toLowerCase().includes(greeting))) {
+                reply = "Hello! How can I assist you with your legal scenario today? Please provide details about your case.";
+            } else {
+                fetch('/process_chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ userMessage: userInput })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    var botReplyElement = document.createElement('div');
+                    botReplyElement.classList.add('message', 'bot');
+                    botReplyElement.innerHTML = data.reply;
+                    chatContainer.appendChild(botReplyElement);
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    var botReplyElement = document.createElement('div');
+                    botReplyElement.classList.add('message', 'bot');
+                    botReplyElement.textContent = "Sorry, I couldn't understand your message.";
+                    chatContainer.appendChild(botReplyElement);
+                });
+                return;
+            }
+
+            var botReplyElement = document.createElement('div');
+            botReplyElement.classList.add('message', 'bot');
+            botReplyElement.textContent = reply;
+            chatContainer.appendChild(botReplyElement);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        document.getElementById('user-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
