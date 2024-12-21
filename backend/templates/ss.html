@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commercial Lease Agreement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            color: #333;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            text-align: center;
+        }
+        .item {
+            margin-left: 20px;
+        }
+        h1{
+            text-align: center;
+        }
+        
+    </style>
+     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+ 
+     <!-- jsPDF Library -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<h1>Lease Agreement</h1>
+
+<div class="section">
+    <h2>This Commercial Lease Agreement (hereinafter referred as ‘Agreement’) was made at <p>{{ data.get("Effective_Date", "No effective date available") }}</p></h2>
+</div>
+
+<div class="section">
+    <h2>BY AND BETWEEN</h2>
+    <p>
+        {{ data["Lessor_Information"]["Name"] }}, son of  {{ data["Lessor_Information"]["Parents_Name"] }}, aged {{ data["Lessor_Information"]["Age"] }} residing at {{ data["Lessor_Information"]["Address"] }}, which terms or expression shall unless repugnant to the subject or context mean and include his legal heirs, executors, successors, administrators, legal representatives and assigns of the FIRST PART;
+    </p>
+</div>
+
+<div class="section">
+    <h2>AND</h2>
+       <p>  {{ data["Lessee_Information"]["Name"] }}, son of  {{ data["Lessee_Information"]["Parents_Name"] }}, aged {{ data["Lessee_Information"]["Age"] }} residing at {{ data["Lessee_Information"]["Address"] }}, which terms or expression shall unless repugnant to the subject or context mean and include his legal heirs, executors, successors, administrators, legal representatives and assigns of the SECOND PART.
+WHEREAS, the Lessor, is the owner of the premises bearing no. {{ data['Property_Details']["Property_Number"] }}, having total area measuring about {{ data['Property_Details']["Total_Area"] }} sq. metres, situated at {{ data['Property_Details']["Property_Location"]["Address"] }},{{ data['Property_Details']["Property_Location"]["Country"] }},{{ data['Property_Details']["Property_Location"]["State"] }},{{ data['Property_Details']["Property_Location"]["State"] }},{{ data['Property_Details']["Property_Location"]["City"] }},{{ data['Property_Details']["Property_Location"]["Pin_Code"] }}
+ hereinafter referred to as the “Demised Premises”.<br>
+AND WHEREAS, the Lessor has agreed with the Lessee to grant to the Lessee under the terms of this Deed the Demised Premises with all fittings, fixtures and furniture installed therein and as fully described in Annexure-I detailed hereunder annexed and forming part of this Deed. The lessee has agreed to take on lease the same, subject to the covenants, conditions and stipulations, hereinafter in these presents expressed and contained.
+</p>
+    
+    
+<h2>Terms of Lease</h2>
+<p>NOW IT IS HEREBY MUTUALLY AGREED BY AND BETWEEN THE PARTIES HERETO AS FOLLOWS:</p>
+<ol>
+    <li>The Term of Lease shall be for a fixed period of 11 Months which shall commence from the effective date.</li>
+    <ul>
+        
+    </ul>
+    <li>This Lease agreement shall be according to the English calendar month, and the Tenant shall pay the above said Lease amount for every month in advance on or before the {{ data["Lease_Terms"]["Monthly_Lease_Amount"]["Amount"] }} of every month through CASH/CHEQUE/ECS/BANK TRANSFER to the Owner.</li>
+</ol>
+</div>
+
+
+<div class="section">
+    <h2>Security Deposit</h2>
+<p>Upon the execution of this Agreement, the Lessee shall pay the Lessor a security deposit of Rs. {{ data["Lease_Terms"]["Security_Deposit"]["Amount"] }}/- (Rupees {{ data["Lease_Terms"]["Security_Deposit"]["In_Words"] }} only) to be held as security for the payment of Lease amount and the due compliance by the Lessee of all of its obligations in this Agreement. The total of the security deposits with observance to the terms and conditions of this agreement shall be refunded to the Lessee within 10 days after the premises have been completely vacated.
+    Lessor may deduct any amount necessary from the security deposit, and ask for further payment from the Lessee of any amount necessary if such amount exceeds the value of the security deposit, to cover the Lessee’s default in any/some/all of the following:
+    a. any unpaid Lease amount,
+    b. cleaning costs,
+    c. key replacement costs, 
+    d. cost for repair of damages to premises and/or common areas exclusive of expected ordinary wear and tear, and
+     e. any other amount legally allowable under the terms of this agreement.
+    A written accounting of said charges shall be presented to Lessee within 10 days of move-out. If the costs are over and above the deposits the Lessee shall immediately pay said additional costs for damages to the Lessor. 
+    6.	POSSESSION OF THE PREMISES
+    If Lessor is unable to deliver possession of the premises for any reason not within Lessor’s control the Lessor will not be held liable for the same. The agreement is not void or voidable. The Lessee do not have to pay any Lease amount until actual possession of the premises.
+    
+    If Lessor is unable to deliver possession within 5 days after the agreed commencement date, the Lessee may terminate this Agreement by giving written notice to Lessor. The Lessor must refund all money and security deposits paid. The failure of Lessee to take possession of the premises on the said date shall not relieve them of their obligation to pay Lease amount on the agreed date.
+    </p>
+</div>
+<div class="section">
+    <h2>Duties And Obligations</h2>
+    <ol>
+        <li>The Lessee hereby undertakes not to sublet, assign or transfer the said Leased premises whole or any part thereof to any other person or concern in any manner whatsoever, without obtaining written consent from the landlord.</li>
+        <li>The accommodation under the lease shall be used as the registered office of the Company.</li>
+        <li>The Lessee shall not make any material addition or alteration to the accommodation under the lease as let out without the previous consent of the owner in writing.</li>
+        <li>The Lessee shall not do or cause to be done anything in or upon the demised Premises which is or may grow to be a source of nuisance or annoyance to the Lessor.</li>
+        <li>The Lessee agrees to indemnify and hold harmless the Lessor for all its business activities including but not limited to statutory dues, municipal taxes, and other charges.</li>
+        <li>The Lessee shall not bring or cause to be brought into or store at the Demised Premises or any part thereof any hazardous goods, articles of combustible or inflammable nature, except in small quantities for normal uses as permitted by law, nor carry out any activity which is illegal in nature and not permissible by law.</li>
+        <li>The Lessee shall keep the premises let out to them in good condition and shall carry out all minor repairs at his own cost and expenses.</li>
+        <li>The Lessee, however, shall have the right to locate such fixtures and/or fittings and wooden temporary partitions or structures as shall be required to execute partitions, chambers, office rooms, etc. However, the Lessee agrees to vacate the property in the same condition he received it in, carrying out repair work to cover up any alterations, permissible under this clause, made by him during the period of the lease.</li>
+        <li>The Lessee further acknowledges that he received the premises in question in excellent condition with freshly painted walls.</li>
+        <li>The Lessor shall have the right to enter and inspect the premises as per their convenience during reasonable hours of business and the Lessee agrees to create no impediments for the same.</li>
+        <li>The Lessee hereby agrees to pay the service tax if applicable.</li>
+    </ol>
+</div>
+<div class="section">
+    <h2> MISCELLANEOUS</h2>
+    <ol>
+        <li>Notwithstanding any other provision of this agreement, the Lessor shall have the right to terminate this agreement at any point in time during the period of the lease.</li>
+        <li>The provisions of this Agreement shall be governed by the Laws in force in the Union of India, and any dispute arising from this Agreement shall be subject to the laws of [Location].</li>
+        <li>The Courts in [Location] shall have sole jurisdiction to entertain disputes arising from / out of / as a result of this Agreement.</li>
+        <li>The Parties hereto agree that this Agreement shall be Registered in [Location].</li>
+        <li>The Lessee will pay property taxes in respect of the demised premises due to the government and corporation.</li>
+    </ol>
+</div>
+
+<div class="section">
+    <h2> TERMINATION</h2>
+    <p>The agreement may be terminated by either party by issuing a notice thirty days prior to the agreed expiry of the Lease period. Where laws require "just cause", such just cause shall be so stated on said notice.</p>
+    <p>The Premises will be deemed vacated only after all areas including storage are vacated by the Lessee and the property provided by the Lessor for the Lessee and the keys returned to the Lessor.</p>
+    <p>If the Lessee does not vacate within 4 weeks, the Lessee is liable to pay the Lessor additionally to cover the damages caused due to the owner’s loss of prospective tenants.</p>
+</div>
+
+<div class="section">
+    <h2>EXTENSION OF LEASE</h2>
+    <p>At the end of the period as stated in the agreement, the lease will automatically covert to month to month. In the event of termination, a written notice must be served by the Lessee or the Lessor to the other at least thirty days prior to the end of the agreement. If the Lessee decides to continue,
+         he will pay the monthly rental or decided otherwise and fulfil all other obligations in the agreement.</p>
+</div>
+<div class="signatures">
+    <h2>Signatures</h2>
+    <p>LESSOR</p>
+    <p>___________________________</p>
+    <p>Name: {{ data["Lessor_Information"]["Name"] }}</p>
+
+    <p>LESSEE</p>
+    <p>___________________________</p>
+    <p>Name: {{ data["Lessee_Information"]["Name"] }}</p>
+
+    <p>In the presence of Witnesses:</p>
+    <p>1) __________________________</p>
+    <p>2) _____________________________</p>
+</div>
+<div class="button-container">
+    <button onclick="saveData()">Save Data</button>
+    <button onclick="loadData()">Load Data</button>
+    <button onclick="window.print()">Print</button>
+    <button onclick="generatePDF()">Download PDF</button>
+</div>
+
+<script>
+    // Firebase initialization
+
+</script>
+<script>
+    
+    // Function to save data to localStorage
+    // Function to download the content as a PDF
+    function generatePDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    const content = document.body.innerHTML;  // Capture the full content
+    doc.html(content, {
+        callback: function (doc) {
+            doc.save('Lease_Agreement.pdf');
+        },
+        margin: [10, 10, 10, 10],  // You can adjust the margins
+    });
+}

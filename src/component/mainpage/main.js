@@ -52,7 +52,7 @@ function MainPage() {
           </div>
           <div className="operation-item">
             <h3>Document Generation</h3>
-            <button className="btn-navigate" onClick={() => window.location.href = '/document-generation'}>Go to Document Generation</button>
+            <button className="btn-navigate" onClick={() => window.location.href = '/document'}>Go to Document Generation</button>
           </div>
         </div>
       </div>
