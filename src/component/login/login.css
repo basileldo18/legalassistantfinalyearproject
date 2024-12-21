@@ -1,0 +1,109 @@
+/* General Styling */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #000; /* Pure black background */
+    color: #fff; /* White text for contrast */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .login-container {
+    width: 350px;
+    background-color: #121212; /* Slightly lighter black for contrast */
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+  
+  .form-header h1 {
+    font-size: 2rem;
+    color: #fff; /* Bright white title */
+    margin-bottom: 5px;
+  }
+  
+  .subtitle {
+    font-size: 0.9rem;
+    color: #b3b3b3; /* Subtle gray subtitle */
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1f1f1f; /* Dark input field */
+    color: #fff;
+    font-size: 14px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .input-group input:focus {
+    outline: none;
+    border: 2px solid #fff; /* Subtle white border on focus */
+  }
+  
+  .button-group {
+    margin-top: 20px;
+  }
+  
+  .login-button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(45deg, #fff, #d9d9d9); /* Gradient white button */
+    color: #000; /* Black text for contrast */
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .login-button:hover {
+    background: linear-gradient(45deg, #e6e6e6, #fff);
+    transform: scale(1.02);
+  }
+  
+  .login-button:active {
+    transform: scale(0.98);
+  }
+  
+  .loading-spinner {
+    font-size: 14px;
+    color: #b3b3b3;
+  }
+  
+  .form-footer {
+    margin-top: 20px;
+  }
+  
+  .form-footer p {
+    font-size: 0.9rem;
+    color: #b3b3b3;
+  }
+  
+  .signup-link {
+    color: #fff; /* Bright white link */
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .signup-link:hover {
+    text-decoration: underline;
+  }
+  
+  .error {
+    color: #ff4d4d; /* Bright red for error messages */
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+  }
+  

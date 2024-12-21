@@ -1,0 +1,195 @@
+/* Main page styling */
+.main-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: black;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Style for the navbar */
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start; /* Align to the left */
+  padding: 10px 20px;
+  align-items: center;
+  position: absolute; /* Use absolute positioning to place it in the top-left corner */
+  top: 0; /* Align to the very top of the page */
+  left: 0; /* Align to the very left of the page */
+  z-index: 1000; /* Ensure the navbar is above other elements */
+}
+
+.logo {
+  width: 150px; /* Adjust logo width */
+  margin-right: 15px; /* Space between logo and title */
+}
+
+h1 {
+  font-family: 'Arial', sans-serif;
+  color: white;
+  font-size: 2rem;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 40px;
+  padding: 20px;
+}
+
+.description {
+  width: 50%;
+  padding: 20px;
+}
+
+.description h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.description p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.image {
+  width: 45%;
+}
+
+.legal-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.get-started {
+  margin-top: 20px;
+}
+
+.btn-start {
+  background-color: #4e73df;
+  color: white;
+  font-size: 1.1rem;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-start:hover {
+  background-color: #1cc88a;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .description {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+
+  .image {
+    width: 80%;
+  }
+}
+/* Styling for Operations Section */
+.operations {
+  margin-top: 60px;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #ffffff, #f0f0f0);
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transform: translateY(10px);
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.operations h2 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.operation-list {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.operation-item {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+  transform: translateY(10px);
+}
+
+.operation-item h3 {
+  font-size: 26px;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.operation-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+.btn-navigate {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-navigate:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .operation-list {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
