@@ -173,52 +173,116 @@
     </div>
     <script>
         function toggleAuth() {
-            const signinForm = document.getElementById('signin-form');
-            const signupForm = document.getElementById('signup-form');
-            const authTitle = document.getElementById('auth-title');
-            const toggleLink = document.querySelector('.toggle-link');
-
-            if (signinForm.style.display === "none") {
-                signinForm.style.display = "block";
-                signupForm.style.display = "none";
-                authTitle.textContent = "Sign In";
-                toggleLink.textContent = "Don't have an account? Sign Up";
-            } else {
-                signinForm.style.display = "none";
-                signupForm.style.display = "block";
-                authTitle.textContent = "Sign Up";
-                toggleLink.textContent = "Already have an account? Sign In";
-            }
+          const signinForm = document.getElementById('signin-form');
+          const signupForm = document.getElementById('signup-form');
+          const authTitle = document.getElementById('auth-title');
+          const toggleLink = document.querySelector('.toggle-link');
+      
+          if (signinForm.style.display === "none") {
+            signinForm.style.display = "block";
+            signupForm.style.display = "none";
+            authTitle.textContent = "Sign In";
+            toggleLink.textContent = "Don't have an account? Sign Up";
+          } else {
+            signinForm.style.display = "none";
+            signupForm.style.display = "block";
+            authTitle.textContent = "Sign Up";
+            toggleLink.textContent = "Already have an account? Sign In";
+          }
         }
+      </script>
+    <script type="module">
 
-        async function sendAuthRequest(url, data) {
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
-                if (!response.ok) throw new Error(`Error: ${response.statusText}`);
-                const responseData = await response.json();
-                console.log('Response:', responseData);
-                alert(responseData.message || "Action successful!");
-                if (url === '/login') window.location.href = '/main';
-                else toggleAuth(); // Switch to sign-in form after sign-up
-            } catch (error) {
-                alert("Request failed: " + error.message);
-            }
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCcmVWGbaTeC2y7bRWOpaYywkO4x1YxQW8",
+  authDomain: "ailegalassistant-f48f5.firebaseapp.com",
+  databaseURL: "https://ailegalassistant-f48f5-default-rtdb.firebaseio.com",
+  projectId: "ailegalassistant-f48f5",
+  storageBucket: "ailegalassistant-f48f5.firebasestorage.app",
+  messagingSenderId: "275330427067",
+  appId: "1:275330427067:web:0e4106c186f2d6bb69e19e",
+  measurementId: "G-3LXKMYE3T2"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const db = getFirestore(app);
+const auth = getAuth(app); 
+
+document.getElementById("signUpa").addEventListener("click", async function () {
+  const username = document.getElementById("username").value;
+  const address = document.getElementById("address").value;
+  const pincode = document.getElementById("pincode").value;
+  const email = document.getElementById("signup-email").value;
+  const password = document.getElementById("signup-password").value;
+
+  if (!username || !address || !pincode || !email || !password) {
+    alert("Please fill out all fields.");
+    return;
+  }
+
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    await setDoc(doc(db, "users", user.uid), {
+      name: username,
+      email: email,
+      address: address,
+      uid: user.uid
+    });
+
+    alert("User registered successfully!");
+    console.log("User data stored in Firestore.");
+  } catch (error) {
+    console.error("Error:", error);
+    alert(`Error: ${error.message}`);
+  }
+});
+
+function sendAuthRequest(endpoint, data) {
+    fetch(endpoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
+        return response.json();
+    })
+    .then(data => {
+    console.error('Server Response:', data.message); // Log the server response
+    if (data) {
+        // If login is successful, redirect to the main page
+        console.log("Login successful:", data.message);
+        window.location.href = '/main'; // Example redirection
+    } else {
+        // If the backend indicates failure, show an alert with the message
+        console.error("Login failed:", data.message);
+        alert(data.message);  // Display error message from backend
+    }
+})
+    .catch(error => {
+        console.error("Error during authentication request:", error);
+        alert("An error occurred. Please try again.");
+    });
+}
 
-        document.getElementById('signUpa').addEventListener('click', () => {
-            const data = {
-                username: document.getElementById('username').value,
-                address: document.getElementById('address').value,
-                pincode: document.getElementById('pincode').value,
-                email: document.getElementById('signup-email').value,
-                password: document.getElementById('signup-password').value
-            };
-            sendAuthRequest('/signup', data);
-        });
+        
 
         document.getElementById('signIna').addEventListener('click', (event) => {
             event.preventDefault();

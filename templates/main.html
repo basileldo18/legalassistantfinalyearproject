@@ -249,9 +249,31 @@
         <div class="cta-buttons">
             <button class="cta-btn" id="startChatBtn">Start Chat</button>
             <button class="cta-btn" id="generateDocumentBtn">Generate Document</button>
+            <button class="cta-btn" id="advocateSelectionBtn">Select Advocate</button>
         </div>
     </section>
-
+    <section id="faqs" style="margin-top: 60px; padding: 50px; background-color: #ffffff; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 15px; width: 80%; max-width: 800px;">
+        <h2 style="font-family: 'Montserrat', sans-serif; font-size: 2.5em; color: #333; margin-bottom: 20px; text-align: center;">Frequently Asked Questions</h2>
+        <div style="text-align: left;">
+            <div style="margin-bottom: 20px;">
+                <h3 style="color: #007bff; font-size: 1.2em; margin-bottom: 10px;">1. What services does the AI Legal Assistant provide?</h3>
+                <p style="color: #666; font-size: 1em;">The AI Legal Assistant provides chatbot-powered legal advice, document generation, and assistance in selecting advocates tailored to your legal needs.</p>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <h3 style="color: #007bff; font-size: 1.2em; margin-bottom: 10px;">2. Can I rely on the legal advice provided by the AI?</h3>
+                <p style="color: #666; font-size: 1em;">The AI is designed to offer general legal guidance. For specific and binding legal advice, we recommend consulting a licensed attorney.</p>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <h3 style="color: #007bff; font-size: 1.2em; margin-bottom: 10px;">3. How do I generate a legal document?</h3>
+                <p style="color: #666; font-size: 1em;">Click the 'Generate Document' button in the section above to start creating customized legal documents based on your requirements.</p>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <h3 style="color: #007bff; font-size: 1.2em; margin-bottom: 10px;">4. Are my details secure on this platform?</h3>
+                <p style="color: #666; font-size: 1em;">Yes, we prioritize your privacy and security. Your information is encrypted and protected as per industry standards.</p>
+            </div>
+        </div>
+    </section>
+    
 </body>
 </html>
 
@@ -263,5 +285,9 @@
     document.getElementById('generateDocumentBtn').addEventListener('click', function() {
         // Set the route you want to redirect to
         window.location.href = '/case'; // Change '/chat' to your desired route
+    });
+    document.getElementById('advocateSelectionBtn').addEventListener('click', function() {
+        // Set the route you want to redirect to
+        window.location.href = '/advocates'; // Change '/advocates' to your desired route
     });
 </script>

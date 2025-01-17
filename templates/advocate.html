@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find an Advocate</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 80%;
+            max-width: 1200px;
+            gap: 20px;
+        }
+
+        .left-section {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .left-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .left-section p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .right-section {
+            flex: 1;
+            min-width: 300px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .right-section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            background-color: #222;
+            color: #fff;
+        }
+
+        button {
+            background-color: red;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff4d4d;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Left Section -->
+        <div class="left-section">
+            <h1>Easyvakil: A Reliable Platform</h1>
+            <p>Connect with the <strong>Best Advocates in Kerala</strong>. Explore legal solutions with a complimentary first consultation absolutely free!</p>
+        </div>
+
+        <!-- Right Section -->
+        <div class="right-section">
+            <h2>Find the Right Advocate</h2>
+            <form method="POST" action="/select_advocate">
+                <label for="category">Select Case Category:</label>
+                <select id="category" name="category" required>
+                    <option value="Criminal Law">Criminal Law</option>
+                    <option value="Family Law">Family Law</option>
+                    <option value="Civil Law">Civil Law</option>
+                    <option value="Corporate Law">Corporate Law</option>
+                    <option value="Intellectual Property Law">Intellectual Property Law</option>
+                    <option value="Tax Law">Tax Law</option>
+                </select>
+
+                <label for="location">Enter Your City/Location:</label>
+                <input type="text" id="location" name="location" placeholder="Enter your city" required>
+
+                <label for="min_experience">Minimum Experience (Years):</label>
+                <input type="number" id="min_experience" name="min_experience" min="0" placeholder="e.g., 2">
+
+                <label for="min_rating">Minimum Rating:</label>
+                <input type="number" id="min_rating" name="min_rating" min="0" max="5" step="0.1" placeholder="e.g., 4.0">
+
+                <button type="submit">Find Advocates</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
